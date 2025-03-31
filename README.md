@@ -1,2 +1,2 @@
 # letter
-typing effect text content
+Paragraph with different typing effect & color modes.
