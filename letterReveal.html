@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrolling Reveal Effect</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            min-height: 200vh; /* Extra space to demonstrate scrolling */
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .reveal-paragraph {
+            padding: 30px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 40px 0;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .reveal-paragraph.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h1 {
+            text-align: center;
+            color: #f44336;
+            margin-bottom: 50px;
+        }
+
+        .spacer {
+            height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Scroll Down to Reveal the Paragraph</h1>
+        
+        <div class="spacer">⬇ Keep scrolling ⬇</div>
+        
+        <div class="reveal-paragraph" id="paragraph1">
+            <p>Love is not just about finding the right person, but creating the right relationship. It's not about how much love you have in the beginning, but how much love you build until the end. A true soulmate is probably the most important person you'll ever meet, because they tear down your walls and smack you awake. Soulmates come into your life just to reveal another layer of yourself to you.</p>
+        </div>
+        
+        <div class="spacer">⬇ More content below ⬇</div>
+        
+        <div class="reveal-paragraph" id="paragraph2">
+            <p>When you meet your soulmate, you'll feel it. Your soul will feel at home. Time will fly and hours will feel like seconds. You'll look at them and just know that you're meant to be together. It won't be perfect, but it will be real. You'll argue, you'll disagree, but through it all, you'll know that there's no one else you'd rather have by your side.</p>
+        </div>
+        
+        <div class="spacer">That's all!</div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const paragraphs = document.querySelectorAll('.reveal-paragraph');
+            
+            function checkVisibility() {
+                paragraphs.forEach(paragraph => {
+                    const rect = paragraph.getBoundingClientRect();
+                    const isVisible = (rect.top <= window.innerHeight * 0.75);
+                    
+                    if (isVisible) {
+                        paragraph.classList.add('visible');
+                    }
+                });
+            }
+            
+            // Check on initial load
+            checkVisibility();
+            
+            // Check on scroll
+            window.addEventListener('scroll', checkVisibility);
+        });
+    </script>
+</body>
+</html>

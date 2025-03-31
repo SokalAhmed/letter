@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Typing Effect</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+        }
+        
+        .typing-container {
+            width: 80%;
+            max-width: 600px;
+        }
+        
+        #typing-text {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="typing-container">
+        <p id="typing-text"></p>
+    </div>
+
+    <script>
+        const text = "Every moment with you feels like a beautiful dream I never want to wake up from. Your smile brightens my darkest days, and your laughter is my favorite melody. I cherish the way you understand me without words and how you make ordinary moments extraordinary. You're my happiness, my peace, and my greatest adventure.";
+        const typingElement = document.getElementById('typing-text');
+        let i = 0;
+        const speed = 30; // typing speed in milliseconds
+
+        function typeWriter() {
+            if (i < text.length) {
+                typingElement.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, speed);
+            }
+        }
+
+        // Start the typing effect when page loads
+        window.onload = function() {
+            typeWriter();
+        };
+    </script>
+</body>
+</html>

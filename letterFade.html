@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Fade-In Effect with Proper Spacing</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding:20px; /* prevent full width */
+            background-color: #ffebee;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 600px;
+            padding: 30px;
+            /* margin:10px; */
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(244, 67, 54, 0.2);
+        }
+        
+        .word-fade {
+            opacity: 0;
+            display: inline;
+            animation: fadeIn 0.8s forwards;
+            position: relative;
+            white-space: pre-wrap;
+        }
+        
+        @keyframes fadeIn {
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        h1 {
+            color: #f44336;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>For My Special Someone</h1>
+        <div id="text-container"></div>
+    </div>
+
+    <script>
+        const paragraph = "From the moment we met, I knew there was something extraordinary about you. Your smile lights up my world, your laughter is my favorite melody, and your love is my greatest treasure. Every day with you feels like a beautiful adventure, and my heart skips a beat whenever you're near. You've shown me what true love means, and I can't imagine my life without you in it.";
+        
+        // Split by word boundaries to preserve punctuation and spaces
+        const wordRegex = /(\S+|\s+)/g;
+        const wordElements = paragraph.match(wordRegex) || [];
+        const container = document.getElementById('text-container');
+        
+        wordElements.forEach((element, i) => {
+            const span = document.createElement('span');
+            span.className = 'word-fade';
+            span.style.animationDelay = `${i * 0.1}s`;
+            
+            // Only apply transform to non-space elements
+            if (element.trim().length > 0) {
+                span.style.transform = `translateY(${Math.random() * 20}px)`;
+            }
+            
+            // Preserve all whitespace exactly as in original text
+            span.textContent = element;
+            container.appendChild(span);
+        });
+    </script>
+</body>
+</html>
